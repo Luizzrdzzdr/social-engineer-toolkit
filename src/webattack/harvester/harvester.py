@@ -4,11 +4,7 @@ import sys
 import html
 import os
 import re
-
-try:
-    from cgi import escape
-except ImportError:
-    from html import escape
+import cgi
 
 # need for python2 -> 3
 try:
@@ -336,7 +332,7 @@ class SETHandler(BaseHTTPRequestHandler):
                 else:
                     line = ""
                 counter = 1
-            filewrite.write(escape("PARAM: " + line + "\n"))
+            filewrite.write(html.escape("PARAM: " + line + "\n"))
             filewrite2.write(line + "\n")
             # if a counter hits at 0 then print this line
             if counter == 0:
